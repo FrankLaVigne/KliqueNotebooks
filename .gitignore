@@ -1,0 +1,11 @@
+# Secrets: holds KLIQUE_GATEWAY_TOKEN
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
