@@ -1,33 +1,67 @@
-# Klique Notebooks
+# KliqueNotebooks
 
-Jupyter notebooks for working with [vLLM](https://docs.vllm.ai/) model endpoints deployed on [Klique](https://klique.ai/docs/latest/).
+A hands-on lab that teaches how to run [vLLM](https://docs.vllm.ai/) on [Klique](https://klique.ai/docs/latest/): deploy a model with the vLLM Model Deployment app, call its endpoint through the AI Application Gateway, and put it under governance with the LLM Gateway.
 
-## Notebooks
+This is not a vLLM tutorial. Klique runs vLLM for you; the lab is about the Klique steps that turn a model name into a governed endpoint.
 
-| Notebook | What it does |
-|---|---|
-| [`01_vLLM/vllm_klique_test_clean.ipynb`](01_vLLM/vllm_klique_test_clean.ipynb) | Sends test requests to a model served by Klique's **vLLM Model Deployment** app, using vLLM's OpenAI-compatible `/v1/completions` and `/v1/chat/completions` routes. It shows how to add a system prompt, split the `<think>` block that reasoning models such as Qwen3 return from the final answer, and turn thinking off with `chat_template_kwargs`. |
+## Structure
 
-## Requirements
+| Section | Directory | Topic |
+|---------|-----------|-------|
+| 00 | `00_Orientation/` | Scope, mental model, and setup. Read this first. |
+| 01 | `01_vLLM/` | Deploy a model with vLLM on Klique, generate a gateway token, and test the endpoint |
+| 02 | `02_LLMGateway/` | Put the endpoint behind the LLM Gateway *(coming next)* |
 
-- A running vLLM Model Deployment instance with an **Active** endpoint ([docs](https://klique.ai/docs/latest/docs/webapp/applications/apps_model_deployment)).
-- An AI Application Gateway token ([how to generate one](https://klique.ai/docs/latest/docs/webapp/settings/webapp_settings_profile#ai-application-gateway-tokens)).
-- A machine that can reach the endpoint's network.
-- Python 3 with Jupyter. The notebook installs `requests` and `python-dotenv` itself.
+## The Path
 
-## Setup
-
-Create a `.env` file in the `vLLM` folder, next to the notebook:
+Every model you serve on Klique follows the same path. Each section of the lab covers one or more steps:
 
 ```
-KLIQUE_BASE_URL=https://<your-endpoint>/v1
-KLIQUE_MODEL=<your Model Endpoint Name>
-KLIQUE_GATEWAY_TOKEN=<your token>
+Model → vLLM Model Deployment → Model Endpoint → AI Application Gateway → LLM Gateway
+ └──────────────── Section 01 ─────────────────────────────────────┘     └── Section 02 ──┘
 ```
 
-`.env` is listed in `.gitignore`, so your token stays out of the repo. Don't paste a token into a notebook cell: it's saved in the `.ipynb` file. Clear the outputs before you commit, too, because they can show your endpoint URL.
+## Getting Started
 
-Then open the notebook and run the cells in order.
+### Prerequisites
+
+- Python 3 and JupyterLab
+- A Klique WebApp login
+- A Klique queue with a GPU agent, and a project you can launch into
+- A machine that can reach the model endpoint's network
+
+### Setup
+
+1. Clone the repo:
+
+   ```
+   git clone https://github.com/FrankLaVigne/KliqueNotebooks.git
+   ```
+
+2. Work through the notebooks in order, starting with `00_Orientation/00_Orientation.ipynb`.
+
+3. In Section 1.6 you create a `.env` file in the project root. Every notebook reads it through `config.py`, so you set it once:
+
+   ```
+   KLIQUE_BASE_URL=https://<your endpoint>/v1
+   KLIQUE_MODEL=<your Model Endpoint Name>
+   KLIQUE_GATEWAY_TOKEN=<your AI Application Gateway token>
+   ```
+
+Each notebook installs its own requirements.
+
+## Project Layout
+
+```
+KliqueNotebooks/
+├── config.py              # Loads .env and exposes KLIQUE_BASE_URL / KLIQUE_MODEL / KLIQUE_GATEWAY_TOKEN
+├── .env                   # Endpoint and token (not tracked in git)
+├── 00_Orientation/        # Section 00
+├── 01_vLLM/               # Section 01
+│   ├── 01_Deploy_a_Model_with_vLLM.ipynb
+│   └── vllm_klique_test_clean.ipynb   # Going further: completions, system prompts, <think> blocks
+└── 02_LLMGateway/         # Section 02 (coming next)
+```
 
 ## License
 
