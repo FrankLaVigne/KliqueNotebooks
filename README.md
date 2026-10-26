@@ -10,7 +10,7 @@ This is not a vLLM tutorial. Klique runs vLLM for you; the lab is about the Kliq
 |---------|-----------|-------|
 | 00 | `00_Orientation/` | Scope, mental model, and setup. Read this first. |
 | 01 | `01_vLLM/` | Deploy a model with vLLM on Klique, generate a gateway token, and test the endpoint |
-| 02 | `02_LLMGateway/` | Call the endpoint through the LLM Gateway, under a profile |
+| 02 | `02_LLMGateway/` | Call the endpoint through the LLM Gateway under a profile, then call different models and Routed Resources |
 
 ## The Path
 
@@ -48,7 +48,7 @@ Model → vLLM Model Deployment → Model Endpoint → AI Application Gateway �
    KLIQUE_GATEWAY_TOKEN=<your AI Application Gateway token>
    ```
 
-   Section 2 needs no new secrets. The LLM Gateway URL is derived from `KLIQUE_BASE_URL` (it is always `<hostname>/llm`), and the profile and model name are set in the notebook.
+   Section 2 needs no new secrets. The LLM Gateway URL is derived from `KLIQUE_BASE_URL` (it is always `<hostname>/llm`), and the profile and model names are set in the notebooks.
 
 Each notebook installs its own requirements.
 
@@ -63,7 +63,8 @@ KliqueNotebooks/
 │   ├── 01_Deploy_a_Model_with_vLLM.ipynb
 │   └── vllm_klique_test_clean.ipynb   # Going further: completions, system prompts, <think> blocks
 └── 02_LLMGateway/         # Section 02
-    └── 02_Use_the_LLM_Gateway.ipynb
+    ├── 02_Use_the_LLM_Gateway.ipynb
+    └── 02b_Models_and_Routed_Resources.ipynb   # Several models, one gateway; rule-based routing
 ```
 
 ## License
