@@ -60,8 +60,7 @@ KliqueNotebooks/
 ├── .env                   # Endpoint and token (not tracked in git)
 ├── 00_Orientation/        # Section 00
 ├── 01_vLLM/               # Section 01
-│   ├── 01_Deploy_a_Model_with_vLLM.ipynb
-│   └── vllm_klique_test_clean.ipynb   # Going further: completions, system prompts, <think> blocks
+│   └── 01_Deploy_a_Model_with_vLLM.ipynb
 └── 02_LLMGateway/         # Section 02
     ├── 02a_Use_the_LLM_Gateway.ipynb
     └── 02b_Models_and_Routed_Resources.ipynb   # Several models, one gateway; rule-based routing
