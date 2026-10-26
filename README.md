@@ -1,8 +1,24 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://klique.ai/assets/images/klique-logo-white.svg">
+    <img alt="Klique" src="https://klique.ai/assets/images/klique-logo-black.svg" height="48">
+  </picture>
+</p>
+
+<p align="center"><img src="images/banner.svg" alt="Klique: the control plane for enterprise AI. Route, govern, orchestrate, run anywhere." width="100%"></p>
+
 # KliqueNotebooks
 
 A hands-on lab that teaches how to run [vLLM](https://docs.vllm.ai/) on [Klique](https://klique.ai/docs/latest/): deploy a model with the vLLM Model Deployment app, call its endpoint through the AI Application Gateway, and put it under governance with the LLM Gateway.
 
 This is not a vLLM tutorial. Klique runs vLLM for you; the lab is about the Klique steps that turn a model name into a governed endpoint.
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="images/platform-dark.svg">
+    <img src="images/platform-light.svg" alt="Klique as a distribution hub: AI requests and workloads arrive, Govern checks them and holds anything over quota, Route labels requests with the right model, Orchestrate loads workloads onto the right compute, and they ship to models or compute" width="100%">
+  </picture>
+</p>
 
 ## Structure
 
