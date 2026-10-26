@@ -63,7 +63,7 @@ KliqueNotebooks/
 │   ├── 01_Deploy_a_Model_with_vLLM.ipynb
 │   └── vllm_klique_test_clean.ipynb   # Going further: completions, system prompts, <think> blocks
 └── 02_LLMGateway/         # Section 02
-    ├── 02_Use_the_LLM_Gateway.ipynb
+    ├── 02a_Use_the_LLM_Gateway.ipynb
     └── 02b_Models_and_Routed_Resources.ipynb   # Several models, one gateway; rule-based routing
 ```
 
