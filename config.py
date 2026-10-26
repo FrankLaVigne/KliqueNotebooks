@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from urllib.parse import urlsplit
 
 # Load .env from the project root
 env_path = Path(__file__).parent / ".env"
@@ -16,3 +17,7 @@ with open(env_path) as f:
 KLIQUE_BASE_URL = os.environ["KLIQUE_BASE_URL"].rstrip("/")
 KLIQUE_MODEL = os.environ["KLIQUE_MODEL"]
 KLIQUE_GATEWAY_TOKEN = os.environ["KLIQUE_GATEWAY_TOKEN"]
+
+# Section 2: the LLM Gateway is always at <hostname>/llm, on the model endpoint's host
+_base = urlsplit(KLIQUE_BASE_URL)
+KLIQUE_LLM_GATEWAY_URL = f"{_base.scheme}://{_base.netloc}/llm"
