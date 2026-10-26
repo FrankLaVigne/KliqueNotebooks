@@ -6,7 +6,7 @@ Jupyter notebooks for working with [vLLM](https://docs.vllm.ai/) model endpoints
 
 | Notebook | What it does |
 |---|---|
-| [`vLLM/vllm_klique_test_clean.ipynb`](vLLM/vllm_klique_test_clean.ipynb) | Sends test requests to a model served by Klique's **vLLM Model Deployment** app, using vLLM's OpenAI-compatible `/v1/completions` and `/v1/chat/completions` routes. It shows how to add a system prompt, split the `<think>` block that reasoning models such as Qwen3 return from the final answer, and turn thinking off with `chat_template_kwargs`. |
+| [`01_vLLM/vllm_klique_test_clean.ipynb`](01_vLLM/vllm_klique_test_clean.ipynb) | Sends test requests to a model served by Klique's **vLLM Model Deployment** app, using vLLM's OpenAI-compatible `/v1/completions` and `/v1/chat/completions` routes. It shows how to add a system prompt, split the `<think>` block that reasoning models such as Qwen3 return from the final answer, and turn thinking off with `chat_template_kwargs`. |
 
 ## Requirements
 
