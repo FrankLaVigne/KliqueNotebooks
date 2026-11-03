@@ -30,7 +30,7 @@ This is not a vLLM tutorial. Klique runs vLLM for you; Sections 01–04 turn a m
 | 03 | `03_Governance/` | Read usage, price your vLLM Resource, set a request rate limit and a wallet budget, and write a client that handles each kind of rejection |
 | 04 | `04_Agents/` | Build a small tool-using agent whose every step is metered, rate-limited, and budgeted by the LLM Gateway |
 | 05 | [`05_VSCode/`](05_VSCode/05_Running_VS_Code.ipynb) | Running VS Code: launch a remote IDE, work with a repo, save a workspace, and stop the session |
-| 06 | [`06_SSH/`](06_SSH/06_Running_an_SSH_Session.ipynb) | Running an SSH Session: connect, work remotely, preserve files, and stop |
+| 06 | [`06_SSH/`](06_SSH/06_Running_an_SSH_Session.ipynb) | [SSH introduction](06_SSH/06_Running_an_SSH_Session.ipynb), then [manually install ComfyUI](06_SSH/06b_Install_ComfyUI_in_an_SSH_Session.ipynb) and generate images through its UI and API |
 | 07 | [`07_ClaudeCode/`](07_ClaudeCode/07_Running_Claude_Code.ipynb) | Running Claude Code: use a managed coding agent, review changes, and inspect usage |
 | 08 | [`08_ClaudeDesktop/`](08_ClaudeDesktop/08_Running_Claude_Desktop.ipynb) | Running Claude Desktop: open the hosted desktop app, try a small task, and clean up |
 
@@ -46,6 +46,8 @@ Model → vLLM Model Deployment → Model Endpoint → AI Application Gateway �
 Sections 03 and 04 build on the governed endpoint: 03 caps what it can cost, and 04 runs an agent through it.
 
 Sections 05–08 add developer sessions on managed compute. They can be taken independently of the endpoint labs; their introductory exercises do not require launching a model deployment. Start with [Running VS Code](05_VSCode/05_Running_VS_Code.ipynb), then explore SSH and the two Claude interfaces.
+
+The second SSH notebook is an end-to-end [manual ComfyUI lab](06_SSH/06b_Install_ComfyUI_in_an_SSH_Session.ipynb): verify GPU compatibility, download a checked SD 1.5 checkpoint, start a loopback-only server, generate an image in the browser, then export and run the workflow through its API. It requires administrator-confirmed SSH forwarding and an appropriate GPU environment.
 
 ## Getting Started
 
@@ -102,7 +104,8 @@ KliqueNotebooks/
 ├── 05_VSCode/             # Section 05
 │   └── 05_Running_VS_Code.ipynb              # Remote editor and session lifecycle
 ├── 06_SSH/                # Section 06
-│   └── 06_Running_an_SSH_Session.ipynb       # Remote shell and connection lifecycle
+│   ├── 06_Running_an_SSH_Session.ipynb       # Remote shell and connection lifecycle
+│   └── 06b_Install_ComfyUI_in_an_SSH_Session.ipynb # Manual install, SD1.5, SSH tunnel, UI and API
 ├── 07_ClaudeCode/         # Section 07
 │   └── 07_Running_Claude_Code.ipynb          # Managed coding agent and usage visibility
 └── 08_ClaudeDesktop/      # Section 08
