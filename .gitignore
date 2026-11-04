@@ -1,5 +1,5 @@
 # Secrets: holds KLIQUE_GATEWAY_TOKEN
-.env
+.env*
 
 # Jupyter
 .ipynb_checkpoints/
