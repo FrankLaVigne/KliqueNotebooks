@@ -1,0 +1,6 @@
+# Core Part 05b-e environment. No dataset/model downloads are performed on install.
+gradio>=5.49,<6
+scikit-learn>=1.5,<2
+matplotlib>=3.9,<4
+# Honor an approved SOCKS proxy when present in the managed environment.
+httpx[socks]>=0.28,<1
