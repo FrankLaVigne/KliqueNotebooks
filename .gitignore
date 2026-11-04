@@ -9,3 +9,13 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+# Part 05 generated lab artifacts (may include prompts, outputs and checkpoints)
+lab_outputs/
+05_VSCode/lab_outputs/
+.pytest_cache/
+.ruff_cache/
+# Never commit training weights or partial checkpoint files.
+*.pt
+*.pth
+.writing-*

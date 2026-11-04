@@ -29,7 +29,7 @@ This is not a vLLM tutorial. Klique runs vLLM for you; Sections 01–04 turn a m
 | 02 | `02_LLMGateway/` | Call the endpoint through the LLM Gateway under a profile, call different models and Routed Resources, and route requests by meaning with semantic routing |
 | 03 | `03_Governance/` | Read usage, price your vLLM Resource, set a request rate limit and a wallet budget, and write a client that handles each kind of rejection |
 | 04 | `04_Agents/` | Build a small tool-using agent whose every step is metered, rate-limited, and budgeted by the LLM Gateway |
-| 05 | [`05_VSCode/`](05_VSCode/05_Running_VS_Code.ipynb) | Running VS Code: launch a remote IDE, work with a repo, save a workspace, and stop the session |
+| 05 | [`05_VSCode/`](05_VSCode/05_Running_VS_Code.ipynb) | Remote IDE introduction, then five hands-on labs: governed playground, repository RAG, agent debugging, model evaluation, and resumable training |
 | 06 | [`06_SSH/`](06_SSH/06_Running_an_SSH_Session.ipynb) | [SSH introduction](06_SSH/06_Running_an_SSH_Session.ipynb), then [manually install ComfyUI](06_SSH/06b_Install_ComfyUI_in_an_SSH_Session.ipynb) and generate images through its UI and API |
 | 07 | [`07_ClaudeCode/`](07_ClaudeCode/07_Running_Claude_Code.ipynb) | Running Claude Code: use a managed coding agent, review changes, and inspect usage |
 | 08 | [`08_ClaudeDesktop/`](08_ClaudeDesktop/08_Running_Claude_Desktop.ipynb) | Running Claude Desktop: open the hosted desktop app, try a small task, and clean up |
@@ -46,6 +46,24 @@ Model → vLLM Model Deployment → Model Endpoint → AI Application Gateway �
 Sections 03 and 04 build on the governed endpoint: 03 caps what it can cost, and 04 runs an agent through it.
 
 Sections 05–08 add developer sessions on managed compute. They can be taken independently of the endpoint labs; their introductory exercises do not require launching a model deployment. Start with [Running VS Code](05_VSCode/05_Running_VS_Code.ipynb), then explore SSH and the two Claude interfaces.
+
+### Build Something in VS Code
+
+All five follow-on notebooks live alongside the introduction in `05_VSCode/`. They are guided Markdown walkthroughs with runnable Python files, offline tests, prerequisites, expected checkpoints, troubleshooting and cleanup.
+
+| Lab | What you build | Live access needed |
+|---|---|---|
+| [05b: Governed AI Playground](05_VSCode/05b_Build_a_Governed_AI_Playground.ipynb) | Gradio app with selectable gateway aliases, response metadata and optional Gradio Launcher deployment | Gateway for live responses; approved browser route for UI access |
+| [05c: Chat with This Repository](05_VSCode/05c_Chat_with_This_Repository.ipynb) | Local TF-IDF retrieval over allowlisted documentation, bounded context and checked citations | Gateway only for optional answer generation |
+| [05d: Debug an Agent](05_VSCode/05d_Debug_an_Agent.ipynb) | Part 04-style agent in a normal module, mocked tests and a VS Code breakpoint exercise | None for tests; gateway for an optional bounded live run |
+| [05e: Run a Model Bake-Off](05_VSCode/05e_Run_a_Model_Bake_Off.ipynb) | Versioned question suite, bounded comparisons, JSONL/CSV results and quality/latency plot | Two permitted profile aliases for live comparison |
+| [05f: Train, Stop, Restore, Continue](05_VSCode/05f_Train_Stop_Restore_Continue.ipynb) | Small image classifier with full checkpoints and explicit restart in a restored workspace | CPU works offline; approved compatible GPU is optional |
+
+The live gateway labs use explicit `KLIQUE_PROFILE` and `KLIQUE_MODEL_ALIASES` settings in addition to the existing endpoint URL and gateway token. See [`gateway.env.example`](05_VSCode/gateway.env.example). Aliases are profile names, not necessarily the direct endpoint's `KLIQUE_MODEL`. Live model calls require `--live`; fixtures and local tests do not contact the gateway.
+
+Install [`requirements.txt`](05_VSCode/requirements.txt) for 05b–05e and the appropriate approved PyTorch build plus [`requirements-training.txt`](05_VSCode/requirements-training.txt) for 05f. Generated results/checkpoints belong in the ignored `lab_outputs/` directory under the persistent workspace, not Git. A workspace snapshot can contain ignored secrets; use approved secret provisioning and review snapshot access.
+
+See [Part 05 support files and verification](05_VSCode/README.md) for commands and the exact scope of local testing.
 
 The second SSH notebook is an end-to-end [manual ComfyUI lab](06_SSH/06b_Install_ComfyUI_in_an_SSH_Session.ipynb): verify GPU compatibility, download a checked SD 1.5 checkpoint, start a loopback-only server, generate an image in the browser, then export and run the workflow through its API. It requires administrator-confirmed SSH forwarding and an appropriate GPU environment.
 
@@ -102,7 +120,12 @@ KliqueNotebooks/
 ├── 04_Agents/             # Section 04
 │   └── 04_Agents_on_a_Governed_Endpoint.ipynb  # A tool-using agent under gateway governance
 ├── 05_VSCode/             # Section 05
-│   └── 05_Running_VS_Code.ipynb              # Remote editor and session lifecycle
+│   ├── 05_Running_VS_Code.ipynb              # Remote editor and session lifecycle
+│   ├── 05b_Build_a_Governed_AI_Playground.ipynb
+│   ├── 05c_Chat_with_This_Repository.ipynb
+│   ├── 05d_Debug_an_Agent.ipynb
+│   ├── 05e_Run_a_Model_Bake_Off.ipynb
+│   └── 05f_Train_Stop_Restore_Continue.ipynb  # Companion scripts and tests in same folder
 ├── 06_SSH/                # Section 06
 │   ├── 06_Running_an_SSH_Session.ipynb       # Remote shell and connection lifecycle
 │   └── 06b_Install_ComfyUI_in_an_SSH_Session.ipynb # Manual install, SD1.5, SSH tunnel, UI and API

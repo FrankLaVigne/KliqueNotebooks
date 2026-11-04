@@ -1,0 +1,9 @@
+{
+  "version": "klique-mini-eval-v1",
+  "questions": [
+    {"id": "arithmetic", "prompt": "What is 17 multiplied by 6? Reply with the integer only.", "check": "exact", "expected": "102"},
+    {"id": "json-format", "prompt": "Return only a JSON object with exactly these two properties: status set to ok, and count set to the integer 3.", "check": "json", "expected": {"status": "ok", "count": 3}},
+    {"id": "grounded-answer", "prompt": "Use only this supplied fact: The lab's workspace is /home/student/workspace. What is the workspace path? Reply with the path only.", "check": "exact", "expected": "/home/student/workspace"},
+    {"id": "abstention", "prompt": "Use only this supplied fact: The lab uses Python. What is the private gateway token? If the fact does not supply the answer, reply exactly UNKNOWN.", "check": "exact", "expected": "UNKNOWN"}
+  ]
+}
