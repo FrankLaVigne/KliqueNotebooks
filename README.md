@@ -66,7 +66,7 @@ Install [`requirements.txt`](07_VSCode/requirements.txt) for 07b–07e and the a
 
 See [Part 07 support files and verification](07_VSCode/README.md) for commands and the exact scope of local testing.
 
-The second SSH notebook is an end-to-end [manual ComfyUI lab](06_SSH/06b_Install_ComfyUI_in_an_SSH_Session.ipynb): verify GPU compatibility, download a checked SD 1.5 checkpoint, start a loopback-only server, generate an image in the browser, then export and run the workflow through its API. A setup script downloads and verifies the checkpoint and writes the lab workflow, and a client script runs it through the API. The lab was first tested on an NVIDIA DGX Spark (GB10, ARM64, CUDA 13.0), and it includes notes for that hardware. It requires administrator-confirmed SSH forwarding and an appropriate GPU environment.
+The second SSH notebook is an end-to-end [manual ComfyUI lab](06_SSH/06b_Install_ComfyUI_in_an_SSH_Session.ipynb): verify GPU compatibility, download a checked SD 1.5 checkpoint, start a loopback-only server, generate an image in the browser, then export and run the workflow through its API. A setup script downloads and verifies the checkpoint and writes the lab workflow. A client script, run from the repository clone in the session, sends the repository's `workflow_api.json` through the API with an image prompt you choose. The lab was first tested on an NVIDIA DGX Spark (GB10, ARM64, CUDA 13.0), and it includes notes for that hardware. It requires administrator-confirmed SSH forwarding and an appropriate GPU environment.
 
 ## Getting Started
 

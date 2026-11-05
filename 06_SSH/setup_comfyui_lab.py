@@ -7,7 +7,9 @@ Run it from ~/workspace/comfyui-lab, the folder that holds ComfyUI/:
 
 It writes two copies of the 6B.7 workflow:
   ComfyUI/user/default/workflows/klique_lab_sd15.json  canvas format, listed under Workflows in ComfyUI
-  workflow_api.json                                    API format, for 6B.9
+  workflow_api.json                                    API format, to compare with your 6B.8 export
+
+The API copy matches 06_SSH/workflow_api.json in the repository, which 6B.9 sends.
 
 Safe to rerun: a verified checkpoint is not downloaded again, and both workflow files are rewritten.
 Uses only the Python standard library.
@@ -144,4 +146,4 @@ api_path = Path("workflow_api.json")
 canvas_path.write_text(json.dumps(canvas, indent=2), encoding="utf-8")
 api_path.write_text(json.dumps(api, indent=2), encoding="utf-8")
 print(f"✅ Canvas workflow: {canvas_path}  (ComfyUI sidebar: Workflows > klique_lab_sd15)")
-print(f"✅ API workflow:    {api_path.resolve()}  (for 6B.9)")
+print(f"✅ API workflow:    {api_path.resolve()}  (compare in 6B.8)")
