@@ -66,7 +66,7 @@ Install [`requirements.txt`](07_VSCode/requirements.txt) for 07b–07e and the a
 
 See [Part 07 support files and verification](07_VSCode/README.md) for commands and the exact scope of local testing.
 
-The second SSH notebook is an end-to-end [manual ComfyUI lab](06_SSH/06b_Install_ComfyUI_in_an_SSH_Session.ipynb): verify GPU compatibility, download a checked SD 1.5 checkpoint, start a loopback-only server, generate an image in the browser, then export and run the workflow through its API. It requires administrator-confirmed SSH forwarding and an appropriate GPU environment.
+The second SSH notebook is an end-to-end [manual ComfyUI lab](06_SSH/06b_Install_ComfyUI_in_an_SSH_Session.ipynb): verify GPU compatibility, download a checked SD 1.5 checkpoint, start a loopback-only server, generate an image in the browser, then export and run the workflow through its API. A setup script downloads and verifies the checkpoint and writes the lab workflow, and a client script runs it through the API. The lab was first tested on an NVIDIA DGX Spark (GB10, ARM64, CUDA 13.0), and it includes notes for that hardware. It requires administrator-confirmed SSH forwarding and an appropriate GPU environment.
 
 ## Getting Started
 
@@ -99,7 +99,17 @@ For Sections 05–09, follow each notebook's app-specific prerequisites. They re
    KLIQUE_GATEWAY_TOKEN=<your AI Application Gateway token>
    ```
 
-   Sections 02–04 reuse that gateway token. `config.py` derives the LLM Gateway URL as `<same-host>/llm`, and the profile and gateway alias names are set in the notebooks. Optional API-based model listing in 02b needs additional Klique API credentials; its manual alias list avoids that optional setup.
+   Sections 02–04 reuse that gateway token. `config.py` derives the LLM Gateway URL as `<same-host>/llm`, and the profile and gateway alias names are set in the notebooks.
+
+   Optional: in Section 2.10, `02b` can read your profile's model list from the Klique API server. To enable it, add an access key and secret, created in the WebApp under **Settings > Workspace**, along with the API server's address:
+
+   ```
+   KLIQUE_API_SERVER=https://<your api server>
+   KLIQUE_ACCESS_KEY=<your access key>
+   KLIQUE_SECRET_KEY=<your secret key>
+   ```
+
+   Without them, 2.10 uses an alias list you type into the notebook. No other section needs them.
 
    The VS Code gateway projects use `07_VSCode/gateway_client.py`, not root `config.py`. They support the root `.env` or approved injected variables, plus the profile and alias settings described above. The session introductions, offline exercises, CPU training, and ComfyUI do not all require endpoint credentials; the Claude apps follow their separate provider/account setup.
 
@@ -110,7 +120,7 @@ The endpoint notebooks import `requests` but do not install packages. Prepare th
 ```
 KliqueNotebooks/
 ├── config.py              # Loads .env, exposes its values, and derives KLIQUE_LLM_GATEWAY_URL
-├── .env                   # Endpoint and token (not tracked in git)
+├── .env                   # Endpoint, token, and optional API key (not tracked in git)
 ├── 00_Orientation/        # Section 00
 ├── 01_vLLM/               # Section 01
 │   └── 01_Deploy_a_Model_with_vLLM.ipynb
@@ -126,7 +136,9 @@ KliqueNotebooks/
 │   └── 05_Running_Jupyter_Lab.ipynb          # First-lesson stub; deployment validation TODOs
 ├── 06_SSH/                # Section 06
 │   ├── 06_Running_an_SSH_Session.ipynb       # Remote shell and connection lifecycle
-│   └── 06b_Install_ComfyUI_in_an_SSH_Session.ipynb # Manual install, SD1.5, SSH tunnel, UI and API
+│   ├── 06b_Install_ComfyUI_in_an_SSH_Session.ipynb # Manual install, SD1.5, SSH tunnel, UI and API
+│   ├── setup_comfyui_lab.py                  # 6B.4: download and verify the checkpoint, write the lab workflow
+│   └── run_comfy_sample.py                   # 6B.9: submit the workflow through the API and save the image
 ├── 07_VSCode/             # Section 07
 │   ├── 07_Running_VS_Code.ipynb              # Remote editor and session lifecycle
 │   ├── 07b_Build_a_Governed_AI_Playground.ipynb
