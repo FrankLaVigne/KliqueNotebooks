@@ -138,7 +138,8 @@ KliqueNotebooks/
 │   ├── 06_Running_an_SSH_Session.ipynb       # Remote shell and connection lifecycle
 │   ├── 06b_Install_ComfyUI_in_an_SSH_Session.ipynb # Manual install, SD1.5, SSH tunnel, UI and API
 │   ├── setup_comfyui_lab.py                  # 6B.4: download and verify the checkpoint, write the lab workflow
-│   └── run_comfy_sample.py                   # 6B.9: submit the workflow through the API and save the image
+│   ├── run_comfy_sample.py                   # 6B.9: submit the workflow through the API and save the image
+│   └── workflow_api.json                     # 6B.9: the lab workflow in API format
 ├── 07_VSCode/             # Section 07
 │   ├── 07_Running_VS_Code.ipynb              # Remote editor and session lifecycle
 │   ├── 07b_Build_a_Governed_AI_Playground.ipynb

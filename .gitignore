@@ -19,3 +19,7 @@ lab_outputs/
 *.pt
 *.pth
 .writing-*
+
+# 6B.9 client outputs, written where the client runs
+06_SSH/api-*.png
+06_SSH/prompt-receipt.json
