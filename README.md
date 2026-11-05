@@ -9,7 +9,7 @@
 
 # KliqueNotebooks
 
-A hands-on lab that teaches how to run [vLLM](https://docs.vllm.ai/) on [Klique](https://klique.ai/docs/latest/): deploy a model with the vLLM Model Deployment app, call its endpoint through the AI Application Gateway, put it under governance with the LLM Gateway, cap its usage and cost, run a tool-using agent on the governed endpoint, and work on managed compute through VS Code, SSH, Claude Code, and Claude Desktop.
+A hands-on guide to model endpoints and developer sessions on [Klique](https://klique.ai/docs/latest/). Deploy a model with [vLLM](https://docs.vllm.ai/), call it through the AI Application Gateway, govern its usage and cost through the LLM Gateway, and run a tool-using agent. Or start with managed VS Code, SSH, Claude Code, and Claude Desktop sessions, then choose projects such as a governed playground, repository RAG, agent debugging, model evaluation, resumable training, or ComfyUI.
 
 This is not a vLLM tutorial. Klique runs vLLM for you; Sections 01–04 turn a model name into a governed endpoint, and Sections 05–08 cover developer sessions on managed compute.
 
@@ -24,9 +24,9 @@ This is not a vLLM tutorial. Klique runs vLLM for you; Sections 01–04 turn a m
 
 | Section | Directory | Topic |
 |---------|-----------|-------|
-| 00 | `00_Orientation/` | Scope, mental model, and setup. Read this first. |
+| 00 | [Orientation](00_Orientation/00_Orientation.ipynb) | Two learning paths, scope, mental model, prerequisites, and setup. Read this first. |
 | 01 | `01_vLLM/` | Deploy a model with vLLM on Klique, generate a gateway token, and test the endpoint |
-| 02 | `02_LLMGateway/` | Call the endpoint through the LLM Gateway under a profile, call different models and Routed Resources, and route requests by meaning with semantic routing |
+| 02 | `02_LLMGateway/` | Call the endpoint through the LLM Gateway under a profile, then call different models and Routed Resources. 02c introduces semantic routing; its hands-on lab is planned |
 | 03 | `03_Governance/` | Read usage, price your vLLM Resource, set a request rate limit and a wallet budget, and write a client that handles each kind of rejection |
 | 04 | `04_Agents/` | Build a small tool-using agent whose every step is metered, rate-limited, and budgeted by the LLM Gateway |
 | 05 | [`05_VSCode/`](05_VSCode/05_Running_VS_Code.ipynb) | Remote IDE introduction, then five hands-on labs: governed playground, repository RAG, agent debugging, model evaluation, and resumable training |
@@ -36,7 +36,7 @@ This is not a vLLM tutorial. Klique runs vLLM for you; Sections 01–04 turn a m
 
 ## The Path
 
-Every model you serve on Klique follows the same path. Each section of the lab covers one or more steps:
+The vLLM endpoint in Sections 01–04 follows this path. Other gateway Resources can point to external providers without a vLLM deployment:
 
 ```
 Model → vLLM Model Deployment → Model Endpoint → AI Application Gateway → LLM Gateway
@@ -71,9 +71,9 @@ The second SSH notebook is an end-to-end [manual ComfyUI lab](06_SSH/06b_Install
 
 ### Prerequisites
 
-For the endpoint labs (Sections 00–04):
+For the endpoint labs (Sections 01–04):
 
-- Python 3 and JupyterLab
+- Python 3, JupyterLab, and `requests` installed in the selected notebook environment
 - A Klique WebApp login
 - A Klique queue with a GPU agent, and a project you can launch into
 - A machine that can reach the model endpoint's network
@@ -88,9 +88,9 @@ For Sections 05–08, follow each notebook's app-specific prerequisites. They re
    git clone https://github.com/FrankLaVigne/KliqueNotebooks.git
    ```
 
-2. Work through the notebooks in order, starting with `00_Orientation/00_Orientation.ipynb`.
+2. Read [Orientation](00_Orientation/00_Orientation.ipynb), then choose a path. For endpoint labs, follow 01 → 02a → 02b → 03 → 04; 02c is currently a concept placeholder. For developer sessions, choose an introduction in 05–08, then follow the prerequisites of any project you select. You do not need to run every section first.
 
-3. In Section 1.6 you create a `.env` file in the project root. The endpoint notebooks read it through `config.py`, so you set it once:
+3. For the endpoint path, create a `.env` file in the project root in Section 1.6. The endpoint notebooks read it through `config.py`:
 
    ```
    KLIQUE_BASE_URL=https://<your endpoint>/v1
@@ -98,9 +98,11 @@ For Sections 05–08, follow each notebook's app-specific prerequisites. They re
    KLIQUE_GATEWAY_TOKEN=<your AI Application Gateway token>
    ```
 
-   Sections 2 to 4 need no new secrets. The LLM Gateway URL is derived from `KLIQUE_BASE_URL` (it is always `<hostname>/llm`), and the profile and model names are set in the notebooks.
+   Sections 02–04 reuse that gateway token. `config.py` derives the LLM Gateway URL as `<same-host>/llm`, and the profile and gateway alias names are set in the notebooks. Optional API-based model listing in 02b needs additional Klique API credentials; its manual alias list avoids that optional setup.
 
-The executable endpoint notebooks install their own requirements. Sections 05–08 are guided Markdown walkthroughs. Run commands only in the local or remote terminal identified by each step. Descriptive screenshot placeholders mark the screens to capture later.
+   The VS Code gateway projects use `05_VSCode/gateway_client.py`, not root `config.py`. They support the root `.env` or approved injected variables, plus the profile and alias settings described above. The session introductions, offline exercises, CPU training, and ComfyUI do not all require endpoint credentials; the Claude apps follow their separate provider/account setup.
+
+The endpoint notebooks import `requests` but do not install packages. Prepare the Jupyter environment through an approved package source, for example with `python -m pip install jupyterlab requests`, and select its kernel. Sections 05–08 are guided Markdown walkthroughs with lab-specific dependencies. Run commands only in the local or remote terminal identified by each step. Descriptive screenshot placeholders mark the screens to capture later.
 
 ## Project Layout
 
@@ -114,7 +116,7 @@ KliqueNotebooks/
 ├── 02_LLMGateway/         # Section 02
 │   ├── 02a_Use_the_LLM_Gateway.ipynb
 │   ├── 02b_Models_and_Routed_Resources.ipynb   # Several models, one gateway; rule-based routing
-│   └── 02c_Semantic_Routing.ipynb              # Route requests by what they mean
+│   └── 02c_Semantic_Routing.ipynb              # Concept introduction; hands-on lab planned
 ├── 03_Governance/         # Section 03
 │   └── 03_Govern_Usage_Cost_and_Limits.ipynb   # Usage, pricing, rate limits, wallet budgets
 ├── 04_Agents/             # Section 04
@@ -138,3 +140,4 @@ KliqueNotebooks/
 ## License
 
 [MIT](LICENSE)
+
