@@ -1,0 +1,7 @@
+# CPU-first notebook runtime. Install from your approved package source.
+numpy>=1.26,<3
+pandas>=2.2,<3
+matplotlib>=3.8,<4
+scikit-learn>=1.5,<2
+Pillow>=10.4,<13
+ipython>=8.20,<10

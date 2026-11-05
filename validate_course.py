@@ -22,6 +22,19 @@ EXPECTED_NOTEBOOKS = {
     '03_Governance/03_Govern_Usage_Cost_and_Limits.ipynb',
     '04_Agents/04_Agents_on_a_Governed_Endpoint.ipynb',
     '05_Jupyter/05_Running_Jupyter_Lab.ipynb',
+    '05_Jupyter/05b_Explore_MNIST.ipynb',
+    '05_Jupyter/05c_Train_a_Digit_Classifier.ipynb',
+    '05_Jupyter/05d_Explore_EMNIST.ipynb',
+    '05_Jupyter/05e_Compare_Experiments.ipynb',
+    '05_Jupyter/05f_Draw_a_Digit.ipynb',
+    '05_Jupyter/05g_Test_Data_Quality_and_Robustness.ipynb',
+    '05_Jupyter/05h_Ask_Public_Documents.ipynb',
+    '05_Jupyter/05i_Benchmark_CPU_and_GPU.ipynb',
+    '05_Jupyter/05j_Create_an_Experiment_Report.ipynb',
+    '05_Jupyter/05k_Forecast_Bike_Demand.ipynb',
+    '05_Jupyter/05l_Detect_Telemetry_Anomalies.ipynb',
+    '05_Jupyter/05m_Explore_Fashion_Similarity.ipynb',
+    '05_Jupyter/05n_Clean_Messy_Data.ipynb',
     '06_SSH/06_Running_an_SSH_Session.ipynb',
     '06_SSH/06b_Install_ComfyUI_in_an_SSH_Session.ipynb',
     '07_VSCode/07_Running_VS_Code.ipynb',
@@ -73,7 +86,7 @@ def main() -> None:
             elif cell.cell_type == 'markdown':
                 links += check_links(path, cell.source)
         print(f'Validated {path.relative_to(ROOT)}')
-    for path in [ROOT / 'README.md', ROOT / '07_VSCode/README.md']:
+    for path in [ROOT / 'README.md', ROOT / '05_Jupyter/README.md', ROOT / '05_Jupyter/DATASETS.md', ROOT / '07_VSCode/README.md']:
         links += check_links(path, path.read_text(encoding='utf-8'))
     python_files = [*ROOT.glob('*.py'), *ROOT.glob('[0-9][0-9]_*/*.py')]
     for path in python_files:

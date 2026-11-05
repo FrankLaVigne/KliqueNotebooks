@@ -9,7 +9,7 @@
 
 # KliqueNotebooks
 
-A hands-on guide to model endpoints and developer sessions on [Klique](https://klique.ai/docs/latest/). Deploy a model with [vLLM](https://docs.vllm.ai/), call it through the AI Application Gateway, govern its usage and cost through the LLM Gateway, and run a tool-using agent. Or start with managed JupyterLab, SSH, VS Code, Claude Code, and Claude Desktop sessions, then choose projects such as a governed playground, repository RAG, agent debugging, model evaluation, resumable training, or ComfyUI.
+A hands-on guide to model endpoints and developer sessions on [Klique](https://klique.ai/docs/latest/). Deploy a model with [vLLM](https://docs.vllm.ai/), call it through the AI Application Gateway, govern its usage and cost through the LLM Gateway, and run a tool-using agent. Or start with managed JupyterLab, SSH, VS Code, Claude Code, and Claude Desktop sessions, then choose projects such as a governed playground, repository RAG, agent debugging, model evaluation, resumable training, ComfyUI, image classification, data-quality experiments, time-series forecasting, anomaly detection, or notebook reports.
 
 This is not a vLLM tutorial. Klique runs vLLM for you; Sections 01–04 turn a model name into a governed endpoint, and Sections 05–09 cover developer sessions on managed compute.
 
@@ -29,7 +29,7 @@ This is not a vLLM tutorial. Klique runs vLLM for you; Sections 01–04 turn a m
 | 02 | `02_LLMGateway/` | Call the endpoint through the LLM Gateway under a profile, then call different models and Routed Resources. 02c introduces semantic routing; its hands-on lab is planned |
 | 03 | `03_Governance/` | Read usage, price your vLLM Resource, set a request rate limit and a wallet budget, and write a client that handles each kind of rejection |
 | 04 | `04_Agents/` | Build a small tool-using agent whose every step is metered, rate-limited, and budgeted by the LLM Gateway |
-| 05 | [`05_Jupyter/`](05_Jupyter/05_Running_Jupyter_Lab.ipynb) | First-lesson stub: launch hosted JupyterLab, run simple Python cells, and plan save/stop/restore verification. Deployment details and screenshots remain TODOs |
+| 05 | [`05_Jupyter/`](05_Jupyter/README.md) | JupyterLab introduction plus 13 executable labs: MNIST/EMNIST, experiments, drawing, robustness, RAG, CPU/GPU timing, reports, bike demand, telemetry, Fashion-MNIST, and CSV/SQL. Intro deployment checks remain TODOs |
 | 06 | [`06_SSH/`](06_SSH/06_Running_an_SSH_Session.ipynb) | [SSH introduction](06_SSH/06_Running_an_SSH_Session.ipynb), then [manually install ComfyUI](06_SSH/06b_Install_ComfyUI_in_an_SSH_Session.ipynb) and generate images through its UI and API |
 | 07 | [`07_VSCode/`](07_VSCode/07_Running_VS_Code.ipynb) | Remote IDE introduction, then five hands-on labs: governed playground, repository RAG, agent debugging, model evaluation, and resumable training |
 | 08 | [`08_ClaudeCode/`](08_ClaudeCode/08_Running_Claude_Code.ipynb) | Running Claude Code: use a managed coding agent, review changes, and inspect usage |
@@ -46,7 +46,18 @@ Model → vLLM Model Deployment → Model Endpoint → AI Application Gateway �
 
 Sections 03 and 04 build on the governed endpoint: 03 caps what it can cost, and 04 runs an agent through it.
 
-Sections 05–09 add developer sessions on managed compute. They can be taken independently of the endpoint labs; their introductory exercises do not require launching a model deployment. The sequence is [JupyterLab](05_Jupyter/05_Running_Jupyter_Lab.ipynb) → [SSH](06_SSH/06_Running_an_SSH_Session.ipynb) → [VS Code](07_VSCode/07_Running_VS_Code.ipynb) → [Claude Code](08_ClaudeCode/08_Running_Claude_Code.ipynb) → [Claude Desktop](09_ClaudeDesktop/09_Running_Claude_Desktop.ipynb). You may also choose the interface you need. Section 05 is a first-lesson stub with runnable standard-library cells and explicit deployment/screenshot TODOs, not a completed live-tested lab.
+Sections 05–09 add developer sessions on managed compute. They can be taken independently of the endpoint labs; their introductory exercises do not require launching a model deployment. The sequence is [JupyterLab](05_Jupyter/05_Running_Jupyter_Lab.ipynb) → [SSH](06_SSH/06_Running_an_SSH_Session.ipynb) → [VS Code](07_VSCode/07_Running_VS_Code.ipynb) → [Claude Code](08_ClaudeCode/08_Running_Claude_Code.ipynb) → [Claude Desktop](09_ClaudeDesktop/09_Running_Claude_Desktop.ipynb). You may also choose the interface you need. Section 05 retains a first-lesson launch scaffold with explicit deployment/screenshot TODOs, then adds 13 runnable, offline-first data and ML lessons. Passing local checks does not establish live Klique launch or restoration.
+
+### Explore Data in JupyterLab
+
+The [Section 05 support guide](05_Jupyter/README.md) indexes all 13 standalone notebooks, dependency setup, data provenance, optional downloads, and offline validation commands.
+
+- [05b: Explore MNIST](05_Jupyter/05b_Explore_MNIST.ipynb), [05c: Train a Digit Classifier](05_Jupyter/05c_Train_a_Digit_Classifier.ipynb), and [05d: Explore EMNIST](05_Jupyter/05d_Explore_EMNIST.ipynb).
+- [05e: Compare Experiments](05_Jupyter/05e_Compare_Experiments.ipynb), [05f: Draw a Digit](05_Jupyter/05f_Draw_a_Digit.ipynb), and [05g: Data Quality and Robustness](05_Jupyter/05g_Test_Data_Quality_and_Robustness.ipynb).
+- [05h: Ask Public Documents](05_Jupyter/05h_Ask_Public_Documents.ipynb), [05i: Benchmark CPU and GPU](05_Jupyter/05i_Benchmark_CPU_and_GPU.ipynb), and [05j: Create an Experiment Report](05_Jupyter/05j_Create_an_Experiment_Report.ipynb).
+- [05k: Forecast Bike Demand](05_Jupyter/05k_Forecast_Bike_Demand.ipynb), [05l: Detect Telemetry Anomalies](05_Jupyter/05l_Detect_Telemetry_Anomalies.ipynb), [05m: Fashion Similarity](05_Jupyter/05m_Explore_Fashion_Similarity.ipynb), and [05n: Clean Messy Data](05_Jupyter/05n_Clean_Messy_Data.ipynb).
+
+CPU and offline fixtures are the defaults. Real MNIST/Fashion-MNIST downloads are explicit; EMNIST's roughly 562 MB archive has a separate large-download opt-in. [Dataset sources and licenses](05_Jupyter/DATASETS.md) remain distinct from the repository MIT license. Named digits/synthetic fallbacks are workflow exercises, not evidence of performance on the requested real dataset. ClearML, CUDA, widget rendering, and gateway generation are optional integrations.
 
 ### Build Something in VS Code
 
@@ -113,7 +124,7 @@ For Sections 05–09, follow each notebook's app-specific prerequisites. They re
 
    The VS Code gateway projects use `07_VSCode/gateway_client.py`, not root `config.py`. They support the root `.env` or approved injected variables, plus the profile and alias settings described above. The session introductions, offline exercises, CPU training, and ComfyUI do not all require endpoint credentials; the Claude apps follow their separate provider/account setup.
 
-The endpoint notebooks import `requests` but do not install packages. Prepare the Jupyter environment through an approved package source, for example with `python -m pip install jupyterlab requests`, and select its kernel. Section 05 combines a first-lesson scaffold with executable Python cells. Sections 06–09 are guided Markdown walkthroughs with lab-specific dependencies. Run commands only in the local or remote terminal identified by each step. Descriptive screenshot placeholders mark the screens to capture later.
+The endpoint notebooks import `requests` but do not install packages. Prepare the Jupyter environment through an approved package source, for example with `python -m pip install jupyterlab requests`, and select its kernel. Section 05 combines a first-lesson scaffold with 13 executable follow-on notebooks, companion helpers, and offline tests. Sections 06–09 are guided Markdown walkthroughs with lab-specific dependencies. Run commands only in the local or remote terminal identified by each step. Descriptive screenshot placeholders mark the screens to capture later.
 
 ## Project Layout
 
@@ -133,7 +144,10 @@ KliqueNotebooks/
 ├── 04_Agents/             # Section 04
 │   └── 04_Agents_on_a_Governed_Endpoint.ipynb  # A tool-using agent under gateway governance
 ├── 05_Jupyter/            # Section 05
-│   └── 05_Running_Jupyter_Lab.ipynb          # First-lesson stub; deployment validation TODOs
+│   ├── 05_Running_Jupyter_Lab.ipynb          # Intro scaffold; deployment validation TODOs
+│   ├── 05b_Explore_MNIST.ipynb               # 05b–05n: 13 data and ML projects
+│   ├── README.md                           # Full lesson index, setup, validation
+│   └── DATASETS.md                         # Sources, licenses, download choices
 ├── 06_SSH/                # Section 06
 │   ├── 06_Running_an_SSH_Session.ipynb       # Remote shell and connection lifecycle
 │   ├── 06b_Install_ComfyUI_in_an_SSH_Session.ipynb # Manual install, SD1.5, SSH tunnel, UI and API
@@ -161,7 +175,7 @@ Before updating an existing checkout, save or commit your own changes and separa
 
 ## Course Validation
 
-Run `python validate_course.py` in an environment with `nbformat` to check every notebook, local Markdown/image links, section layout, and Python syntax without making live requests. See [VS Code support files and offline checks](07_VSCode/README.md) for companion-script tests. Jupyter deployment checks and screenshots remain explicit TODOs.
+Run `python validate_course.py` in an environment with `nbformat` to check every notebook, local Markdown/image links, section layout, and Python syntax without making live requests. See [Jupyter support files and fresh-process offline checks](05_Jupyter/README.md) and [VS Code support files and offline checks](07_VSCode/README.md) for executable tests. Jupyter deployment checks and screenshots remain explicit TODOs.
 
 ## License
 

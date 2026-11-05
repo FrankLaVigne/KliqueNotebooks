@@ -23,3 +23,6 @@ lab_outputs/
 # 6B.9 client outputs, written where the client runs
 06_SSH/api-*.png
 06_SSH/prompt-receipt.json
+
+# Jupyter image caches, reports, and local execution copies
+05_Jupyter/lab_outputs/
