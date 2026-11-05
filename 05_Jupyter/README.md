@@ -35,7 +35,11 @@ Use Python 3.10+ in the hosted JupyterLab environment or another approved local 
 python -m pip install -r 05_Jupyter/requirements.txt
 ```
 
-Select the corresponding kernel. JupyterLab itself must already be available in the approved image; the introduction covers launch and kernel selection. No notebook installs packages automatically. If public package hosts are unavailable, have the administrator prepare the image or approved package mirror.
+Select the corresponding kernel. Alternatively, each follow-on notebook (05b–05n) includes a dependency setup cell before its imports. Set `INSTALL_PACKAGES = True` and run that cell once if packages are missing. It uses the selected kernel's `%pip` with this same requirements file and detects both repository-root and `05_Jupyter` working directories. `scikit-learn` is the install name for the `sklearn` import.
+
+Only enable installation when permitted and pip uses your approved package source. After installation succeeds, set the flag back to `False`, restart the kernel, and run the notebook from the top. The flag defaults to `False`, so prepared environments and offline validation do not install packages or contact a package host. Optional GPU and service packages are not added by this setup.
+
+JupyterLab itself must already be available in the approved image; the introduction covers launch and kernel selection and does not need these extra packages. If package hosts are unavailable, have the administrator prepare the image or approved package mirror.
 
 Optional capabilities are intentionally not forced into the CPU requirements:
 - **Interactive drawing:** install `ipywidgets>=8.1,<9` through the approved source and enable the JupyterLab widget frontend. The NumPy fallback still works without it.
@@ -64,11 +68,11 @@ python 05_Jupyter/validate_notebooks.py
 
 `validate_notebooks.py` copies this repository's lesson sources and selected documentation into a temporary directory, blocks Python-level outbound HTTP/TCP connection attempts inside each execution process, and executes all 13 follow-on notebooks in separate fresh Python processes. It removes image data caches so default offline fallbacks are exercised. This is an offline regression guard, not a security sandbox. Generated outputs stay in the temporary copy, not committed notebooks. Pass `--cwd root` to exercise repository-root startup instead of section-folder startup. `--engine kernel` additionally exercises actual Jupyter kernels using local IPC, when the environment permits local sockets. Fresh-Python execution is not kernel, widget-rendering, or frontend verification. It does not execute the optional download, ClearML, gateway, or CUDA branches.
 
-The unit tests cover deterministic data splits, shape/range/label handling, bounded download parsing and corruption checks, EMNIST mapping/orientation adapters, numeric checkpoint round trips and rejection, drawing preprocessing, bounded public-document retrieval/abstention, report schemas, chronological leakage safeguards, threshold selection, pandas/SQLite consistency, and both supported working directories.
+The unit tests cover deterministic data splits, shape/range/label handling, bounded download parsing and corruption checks, EMNIST mapping/orientation adapters, numeric checkpoint round trips and rejection, drawing preprocessing, bounded public-document retrieval/abstention, report schemas, chronological leakage safeguards, threshold selection, pandas/SQLite consistency, both supported working directories, and opt-in dependency setup (including paths with spaces, no installation by default, and clear errors outside a notebook kernel).
 
 ### Verification scope
 
-Local checks cover notebook schemas, Python syntax, repository-local links, helper tests, and fresh-process offline cell execution. At implementation time, all **28 section unit tests passed**, and all 13 follow-on notebooks executed in fresh Python processes from both the section folder and repository root. The course validator checked 31 notebook schemas and local links. Review plots included the held-out confusion matrix, nearest-neighbor gallery, and telemetry series.
+Local checks cover notebook schemas, Python syntax, repository-local links, helper tests, and fresh-process offline cell execution. After adding the notebook dependency setup, all **33 section unit tests passed**, and all 13 follow-on notebooks executed in fresh Python processes from both the section folder and repository root. The course validator checked 31 notebook schemas and local links. Review plots included the held-out confusion matrix, nearest-neighbor gallery, and telemetry series.
 
 Real MNIST and Fashion-MNIST downloads passed published compressed-file checksums, parsing, and bounded CPU training on 1,000 training / 200 test examples each. The real UCI Bike Sharing download also ran through the 731-day chronological modeling workflow. These small smoke runs do not establish benchmark performance. A bounded logistic run can emit a convergence warning at its iteration cap; it remains visible rather than suppressed.
 
