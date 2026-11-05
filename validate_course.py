@@ -1,6 +1,6 @@
 """Offline course layout, notebook-schema, local-link and Python syntax checks.
 
-Run from any working directory with Python 3.10+ and nbformat installed.
+Run from any working directory with Python 3.10+, nbformat and IPython installed.
 This does not execute lab cells, contact Klique, or validate cloud UI behavior.
 """
 from __future__ import annotations
@@ -11,6 +11,7 @@ import re
 from urllib.parse import unquote, urlsplit
 
 import nbformat
+from IPython.core.inputtransformer2 import TransformerManager
 
 ROOT = Path(__file__).resolve().parent
 EXPECTED_NOTEBOOKS = {
@@ -68,6 +69,15 @@ def check_links(path: Path, source: str) -> int:
     return count
 
 
+def check_cell_syntax(source: str, filename: str) -> None:
+    """Parse Python or IPython syntax without executing cells or shell commands."""
+    try:
+        ast.parse(source, filename=filename)
+    except SyntaxError:
+        transformed = TransformerManager().transform_cell(source)
+        ast.parse(transformed, filename=filename)
+
+
 def main() -> None:
     notebooks = sorted(p for folder in ROOT.glob('[0-9][0-9]_*') for p in folder.glob('*.ipynb'))
     actual = {str(p.relative_to(ROOT)) for p in notebooks}
@@ -82,7 +92,7 @@ def main() -> None:
             if any(old in cell.source for old in OLD_DIRECTORIES):
                 raise ValueError(f'{path.name}, cell {i}: obsolete directory reference')
             if cell.cell_type == 'code':
-                ast.parse(cell.source, filename=f'{path.name}:cell-{i}')
+                check_cell_syntax(cell.source, filename=f'{path.name}:cell-{i}')
             elif cell.cell_type == 'markdown':
                 links += check_links(path, cell.source)
         print(f'Validated {path.relative_to(ROOT)}')

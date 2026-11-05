@@ -175,7 +175,7 @@ Before updating an existing checkout, save or commit your own changes and separa
 
 ## Course Validation
 
-Run `python validate_course.py` in an environment with `nbformat` to check every notebook, local Markdown/image links, section layout, and Python syntax without making live requests. See [Jupyter support files and fresh-process offline checks](05_Jupyter/README.md) and [VS Code support files and offline checks](07_VSCode/README.md) for executable tests. Jupyter deployment checks and screenshots remain explicit TODOs.
+Run `python validate_course.py` in an environment with `nbformat` and `IPython` to check every notebook, local Markdown/image links, section layout, and Python/IPython cell syntax without executing cells or shell commands. Both packages are included by the Jupyter section's developer requirements. See [Jupyter support files and fresh-process offline checks](05_Jupyter/README.md) and [VS Code support files and offline checks](07_VSCode/README.md) for executable tests. Jupyter deployment checks and screenshots remain explicit TODOs.
 
 ## License
 
