@@ -12,7 +12,9 @@ HERE = Path(__file__).resolve().parent
 
 
 def main():
-    notebooks = sorted(HERE.glob('05*.ipynb'))
+    notebooks = sorted(HERE.glob('07*.ipynb'))
+    if len(notebooks) != 6:
+        raise ValueError(f'Expected six Section 07 notebooks, found {len(notebooks)}')
     for path in notebooks:
         notebook = nbformat.read(path, as_version=4)
         nbformat.validate(notebook)

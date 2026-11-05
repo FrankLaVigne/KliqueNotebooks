@@ -1,4 +1,4 @@
-# Core Part 05b-e environment. No dataset/model downloads are performed on install.
+# Core Part 07b-e environment. No dataset/model downloads are performed on install.
 gradio>=5.49,<6
 scikit-learn>=1.5,<2
 matplotlib>=3.9,<4

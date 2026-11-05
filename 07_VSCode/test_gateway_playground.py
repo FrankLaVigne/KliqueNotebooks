@@ -31,14 +31,14 @@ class GatewayTests(unittest.TestCase):
     def test_env_only_and_explicit_aliases(self):
         env = {"KLIQUE_BASE_URL": "https://example.test/endpoint/v1", "KLIQUE_PROFILE": "lab",
                "KLIQUE_GATEWAY_TOKEN": "private", "KLIQUE_MODEL_ALIASES": "one, two,one"}
-        cfg = GatewayConfig.from_environment(env, "/tmp/klique-no-such-env-05")
+        cfg = GatewayConfig.from_environment(env, "/tmp/klique-no-such-env-07")
         self.assertEqual(cfg.base_url, "https://example.test/llm")
         self.assertEqual(cfg.models, ("one", "two"))
         self.assertNotIn("private", repr(cfg))
         env.pop("KLIQUE_MODEL_ALIASES")
         env["KLIQUE_MODEL"] = "direct-endpoint-not-an-alias"
         with self.assertRaises(ValueError):
-            GatewayConfig.from_environment(env, "/tmp/klique-no-such-env-05")
+            GatewayConfig.from_environment(env, "/tmp/klique-no-such-env-07")
 
     def test_env_precedence_quotes_and_no_execution(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -53,7 +53,7 @@ class GatewayTests(unittest.TestCase):
         for base in ("http://example.test/llm", "https://user:secret@example.test/llm",
                      "https://example.test/llm?key=secret", "https://example.test/not-llm"):
             with self.assertRaises(ValueError):
-                GatewayConfig.from_environment({"KLIQUE_LLM_GATEWAY_URL": base}, "/tmp/klique-no-such-env-05")
+                GatewayConfig.from_environment({"KLIQUE_LLM_GATEWAY_URL": base}, "/tmp/klique-no-such-env-07")
         self.assertIsNone(_NoRedirect().redirect_request(None, None, 302, "", {}, "https://other.test"))
 
     def test_exact_route_headers_and_unknown_usage(self):

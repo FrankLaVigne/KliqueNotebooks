@@ -1,4 +1,4 @@
-"""Small, dependency-free Klique LLM Gateway client for the Part 05 labs.
+"""Small, dependency-free Klique LLM Gateway client for the Part 07 labs.
 
 No import-time requests, automatic retries, secret logging, or alias discovery.
 """

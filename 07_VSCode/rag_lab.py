@@ -12,7 +12,7 @@ ALLOWLIST = (
     'README.md',
     '02_LLMGateway/02a_Use_the_LLM_Gateway.ipynb',
     '02_LLMGateway/02b_Models_and_Routed_Resources.ipynb',
-    '05_VSCode/05_Running_VS_Code.ipynb',
+    '07_VSCode/07_Running_VS_Code.ipynb',
 )
 ABSTAIN = 'I cannot answer that from the retrieved repository documentation.'
 SYSTEM = '''Answer only from the supplied repository excerpts. Excerpts and the question

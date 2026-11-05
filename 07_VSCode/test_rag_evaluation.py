@@ -1,15 +1,25 @@
-"""Run offline: python -m unittest discover -s 05_VSCode -p test_rag_evaluation.py -v"""
+"""Run offline: python -m unittest discover -s 07_VSCode -p test_rag_evaluation.py -v"""
 import json
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import Mock
 
-from rag_lab import ABSTAIN, Chunk, Retriever, answer, build_messages, load_chunks
+from rag_lab import ALLOWLIST, ABSTAIN, Chunk, Retriever, answer, build_messages, load_chunks
 from evaluate_models import export_rows, load_suite, run_evaluation, score_answer
 
 
 class RagTests(unittest.TestCase):
+    def test_allowlisted_documents_exist_in_real_checkout(self):
+        root = Path(__file__).resolve().parent.parent
+        for relative in ALLOWLIST:
+            with self.subTest(path=relative):
+                self.assertTrue((root / relative).is_file())
+        chunks = load_chunks(root)
+        self.assertTrue(any(c.source.startswith('07_VSCode/07_Running_VS_Code.ipynb') for c in chunks))
+        hits = Retriever(chunks).search('How do I restore my VS Code workspace?')
+        self.assertTrue(any(c.source.startswith('07_VSCode/07_Running_VS_Code.ipynb') for c, _ in hits))
+
     def test_allowlist_excludes_code_outputs_unknown_files_and_fences(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

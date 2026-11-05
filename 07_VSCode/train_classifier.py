@@ -244,7 +244,7 @@ def train(args):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--run-dir", default="05_VSCode/lab_outputs/digits-run")
+    parser.add_argument("--run-dir", default="07_VSCode/lab_outputs/digits-run")
     parser.add_argument("--epochs", type=int, default=3, help="Total completed epochs desired")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--batch-size", type=int, default=64)

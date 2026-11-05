@@ -1,4 +1,4 @@
-"""Offline tests: python -m unittest discover -s 05_VSCode -p test_agent_lab.py -v"""
+"""Offline tests: python -m unittest discover -s 07_VSCode -p test_agent_lab.py -v"""
 import json
 import unittest
 from agent_lab import MockClient, calculator, demo_client, mock_reply, run_agent, run_tool
