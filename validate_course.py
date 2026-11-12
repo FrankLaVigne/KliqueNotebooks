@@ -17,6 +17,9 @@ ROOT = Path(__file__).resolve().parent
 EXPECTED_NOTEBOOKS = {
     '00_Orientation/00_Orientation.ipynb',
     '01_vLLM/01_Deploy_a_Model_with_vLLM.ipynb',
+    '01_vLLM/01b_Stream_and_Measure_Performance.ipynb',
+    '01_vLLM/01c_Structured_Output_and_Tool_Calling.ipynb',
+    '01_vLLM/01d_Tune_and_Relaunch_a_Deployment.ipynb',
     '02_LLMGateway/02a_Use_the_LLM_Gateway.ipynb',
     '02_LLMGateway/02b_Models_and_Routed_Resources.ipynb',
     '02_LLMGateway/02c_Semantic_Routing.ipynb',
