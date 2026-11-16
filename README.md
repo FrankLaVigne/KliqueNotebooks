@@ -11,7 +11,7 @@
 
 A hands-on guide to model endpoints and developer sessions on [Klique](https://klique.ai/docs/latest/). Deploy a model with [vLLM](https://docs.vllm.ai/), call it through the AI Application Gateway, govern its usage and cost through the LLM Gateway, and run a tool-using agent. Or start with managed JupyterLab, SSH, VS Code, Claude Code, and Claude Desktop sessions, then choose projects such as a governed playground, repository RAG, agent debugging, model evaluation, resumable training, ComfyUI, image classification, data-quality experiments, time-series forecasting, anomaly detection, or notebook reports.
 
-This is not a vLLM tutorial. Klique runs vLLM for you; Sections 01–04 turn a model name into a governed endpoint, and Sections 05–09 cover developer sessions on managed compute.
+This is not a vLLM tutorial. Klique runs vLLM for you; Sections 01–04 turn a model name into a governed endpoint, and Sections 05–10 cover developer sessions on managed compute.
 
 <p align="center">
   <picture>
@@ -34,6 +34,7 @@ This is not a vLLM tutorial. Klique runs vLLM for you; Sections 01–04 turn a m
 | 07 | [`07_VSCode/`](07_VSCode/07_Running_VS_Code.ipynb) | Remote IDE introduction, then five hands-on labs: governed playground, repository RAG, agent debugging, model evaluation, and resumable training |
 | 08 | [`08_ClaudeCode/`](08_ClaudeCode/08_Running_Claude_Code.ipynb) | Running Claude Code: use a managed coding agent, review changes, and inspect usage |
 | 09 | [`09_ClaudeDesktop/`](09_ClaudeDesktop/09_Running_Claude_Desktop.ipynb) | Running Claude Desktop: open the hosted desktop app, try a small task, and clean up |
+| 10 | [`10_Hermes/`](10_Hermes/10_Running_Hermes_Agent.ipynb) | Hermes Agent in an approved SSH/VS Code session: model route, bounded tool task, review, and cleanup; live integration unverified |
 
 ## The Path
 
@@ -46,7 +47,7 @@ Model → vLLM Model Deployment → Model Endpoint → AI Application Gateway �
 
 Sections 03 and 04 build on the governed endpoint: 03 caps what it can cost, and 04 runs an agent through it.
 
-Sections 05–09 add developer sessions on managed compute. They can be taken independently of the endpoint labs; their introductory exercises do not require launching a model deployment. The sequence is [JupyterLab](05_Jupyter/05_Running_Jupyter_Lab.ipynb) → [SSH](06_SSH/06_Running_an_SSH_Session.ipynb) → [VS Code](07_VSCode/07_Running_VS_Code.ipynb) → [Claude Code](08_ClaudeCode/08_Running_Claude_Code.ipynb) → [Claude Desktop](09_ClaudeDesktop/09_Running_Claude_Desktop.ipynb). You may also choose the interface you need. Section 05 retains a first-lesson launch scaffold with explicit deployment/screenshot TODOs, then adds 13 runnable, offline-first data and ML lessons. Passing local checks does not establish live Klique launch or restoration.
+Sections 05–10 add developer sessions on managed compute. They can be taken independently of the endpoint labs; their introductory exercises do not require launching a model deployment. The sequence is [JupyterLab](05_Jupyter/05_Running_Jupyter_Lab.ipynb) → [SSH](06_SSH/06_Running_an_SSH_Session.ipynb) → [VS Code](07_VSCode/07_Running_VS_Code.ipynb) → [Claude Code](08_ClaudeCode/08_Running_Claude_Code.ipynb) → [Claude Desktop](09_ClaudeDesktop/09_Running_Claude_Desktop.ipynb). Section 10 adds [Hermes Agent](10_Hermes/10_Running_Hermes_Agent.ipynb) inside an approved SSH or VS Code session, not an assumed native Klique app. You may also choose the interface you need. Section 05 retains a first-lesson launch scaffold with explicit deployment/screenshot TODOs, then adds 13 runnable, offline-first data and ML lessons. Passing local checks does not establish live Klique launch or restoration.
 
 ### Explore Data in JupyterLab
 
@@ -90,7 +91,7 @@ For the endpoint labs (Sections 01–04):
 - A Klique queue with a GPU agent, and a project you can launch into
 - A machine that can reach the model endpoint's network
 
-For Sections 05–09, follow each notebook's app-specific prerequisites. They require permitted apps, projects, compute queues, and approved environments; the Claude exercises also require your organization's provider/account setup.
+For Sections 05–10, follow each notebook's app-specific prerequisites. They require permitted apps, projects, compute queues, and approved environments; the Claude and Hermes exercises also require your organization's provider/account setup.
 
 ### Setup
 
@@ -100,7 +101,7 @@ For Sections 05–09, follow each notebook's app-specific prerequisites. They re
    git clone https://github.com/FrankLaVigne/KliqueNotebooks.git
    ```
 
-2. Read [Orientation](00_Orientation/00_Orientation.ipynb), then choose a path. For endpoint labs, follow 01 → 02a → 02b → 03 → 04; 01b–01d are optional after 01, and 02c is currently a concept placeholder. For developer sessions, choose an introduction in 05–09, then follow the prerequisites of any project you select. You do not need to run every section first.
+2. Read [Orientation](00_Orientation/00_Orientation.ipynb), then choose a path. For endpoint labs, follow 01 → 02a → 02b → 03 → 04; 01b–01d are optional after 01, and 02c is currently a concept placeholder. For developer sessions, choose an introduction in 05–10, then follow the prerequisites of any project you select. You do not need to run every section first.
 
 3. For the endpoint path, create a `.env` file in the project root in Section 1.6. The endpoint notebooks read it through `config.py`:
 
@@ -124,7 +125,7 @@ For Sections 05–09, follow each notebook's app-specific prerequisites. They re
 
    The VS Code gateway projects use `07_VSCode/gateway_client.py`, not root `config.py`. They support the root `.env` or approved injected variables, plus the profile and alias settings described above. The session introductions, offline exercises, CPU training, and ComfyUI do not all require endpoint credentials; the Claude apps follow their separate provider/account setup.
 
-The endpoint notebooks import `requests` but do not install packages. Prepare the Jupyter environment through an approved package source, for example with `python -m pip install jupyterlab requests`, and select its kernel. Section 05 combines a first-lesson scaffold with 13 executable follow-on notebooks, companion helpers, and offline tests. Sections 06–09 are guided Markdown walkthroughs with lab-specific dependencies. Run commands only in the local or remote terminal identified by each step. Descriptive screenshot placeholders mark the screens to capture later.
+The endpoint notebooks import `requests` but do not install packages. Prepare the Jupyter environment through an approved package source, for example with `python -m pip install jupyterlab requests`, and select its kernel. Section 05 combines a first-lesson scaffold with 13 executable follow-on notebooks, companion helpers, and offline tests. Sections 06–10 are guided Markdown walkthroughs with lab-specific dependencies. Run commands only in the local or remote terminal identified by each step. Descriptive screenshot placeholders mark the screens to capture later.
 
 ## Project Layout
 
@@ -166,8 +167,10 @@ KliqueNotebooks/
 │   └── 07f_Train_Stop_Restore_Continue.ipynb  # Companion scripts and tests in same folder
 ├── 08_ClaudeCode/         # Section 08
 │   └── 08_Running_Claude_Code.ipynb          # Managed coding agent and usage visibility
-└── 09_ClaudeDesktop/      # Section 09
-    └── 09_Running_Claude_Desktop.ipynb       # Browser-accessible desktop application
+├── 09_ClaudeDesktop/      # Section 09
+│   └── 09_Running_Claude_Desktop.ipynb       # Browser-accessible desktop application
+└── 10_Hermes/             # Section 10
+    └── 10_Running_Hermes_Agent.ipynb         # Terminal agent in an approved developer session
 ```
 
 ## Updating from Older Recordings or Checkouts

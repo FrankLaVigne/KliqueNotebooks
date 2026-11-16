@@ -49,6 +49,7 @@ EXPECTED_NOTEBOOKS = {
     '07_VSCode/07f_Train_Stop_Restore_Continue.ipynb',
     '08_ClaudeCode/08_Running_Claude_Code.ipynb',
     '09_ClaudeDesktop/09_Running_Claude_Desktop.ipynb',
+    '10_Hermes/10_Running_Hermes_Agent.ipynb',
 }
 # Built in pieces so the validator does not flag its own obsolete-path guard.
 OLD_DIRECTORIES = ('05_' + 'VSCode', '07_' + 'ClaudeCode', '08_' + 'ClaudeDesktop')
