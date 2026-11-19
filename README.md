@@ -34,7 +34,7 @@ This is not a vLLM tutorial. Klique runs vLLM for you; Sections 01–04 turn a m
 | 07 | [`07_VSCode/`](07_VSCode/07_Running_VS_Code.ipynb) | Remote IDE introduction, then five hands-on labs: governed playground, repository RAG, agent debugging, model evaluation, and resumable training |
 | 08 | [`08_ClaudeCode/`](08_ClaudeCode/08_Running_Claude_Code.ipynb) | Running Claude Code: use a managed coding agent, review changes, and inspect usage |
 | 09 | [`09_ClaudeDesktop/`](09_ClaudeDesktop/09_Running_Claude_Desktop.ipynb) | Running Claude Desktop: open the hosted desktop app, try a small task, and clean up |
-| 10 | [`10_Hermes/`](10_Hermes/10_Running_Hermes_Agent.ipynb) | Hermes Agent in an approved SSH/VS Code session: model route, bounded tool task, review, and cleanup; live integration unverified |
+| 10 | [`10_Hermes/`](10_Hermes/10a_Running_Hermes_Agent.ipynb) | Running Hermes Agent: launch the Hermes app on an LLM Gateway endpoint, explore its terminal UI, and stop the session |
 
 ## The Path
 
@@ -47,7 +47,7 @@ Model → vLLM Model Deployment → Model Endpoint → AI Application Gateway �
 
 Sections 03 and 04 build on the governed endpoint: 03 caps what it can cost, and 04 runs an agent through it.
 
-Sections 05–10 add developer sessions on managed compute. They can be taken independently of the endpoint labs; their introductory exercises do not require launching a model deployment. The sequence is [JupyterLab](05_Jupyter/05_Running_Jupyter_Lab.ipynb) → [SSH](06_SSH/06_Running_an_SSH_Session.ipynb) → [VS Code](07_VSCode/07_Running_VS_Code.ipynb) → [Claude Code](08_ClaudeCode/08_Running_Claude_Code.ipynb) → [Claude Desktop](09_ClaudeDesktop/09_Running_Claude_Desktop.ipynb). Section 10 adds [Hermes Agent](10_Hermes/10_Running_Hermes_Agent.ipynb) inside an approved SSH or VS Code session, not an assumed native Klique app. You may also choose the interface you need. Section 05 retains a first-lesson launch scaffold with explicit deployment/screenshot TODOs, then adds 13 runnable, offline-first data and ML lessons. Passing local checks does not establish live Klique launch or restoration.
+Sections 05–10 add developer sessions on managed compute. They can be taken independently of the endpoint labs; their introductory exercises do not require launching a model deployment. The sequence is [JupyterLab](05_Jupyter/05_Running_Jupyter_Lab.ipynb) → [SSH](06_SSH/06_Running_an_SSH_Session.ipynb) → [VS Code](07_VSCode/07_Running_VS_Code.ipynb) → [Claude Code](08_ClaudeCode/08_Running_Claude_Code.ipynb) → [Claude Desktop](09_ClaudeDesktop/09_Running_Claude_Desktop.ipynb). Section 10 launches [Hermes Agent](10_Hermes/10a_Running_Hermes_Agent.ipynb) from Klique Applications against an LLM Gateway endpoint. You may also choose the interface you need. Section 05 retains a first-lesson launch scaffold with explicit deployment/screenshot TODOs, then adds 13 runnable, offline-first data and ML lessons. Passing local checks does not establish live Klique launch or restoration.
 
 ### Explore Data in JupyterLab
 
@@ -170,7 +170,7 @@ KliqueNotebooks/
 ├── 09_ClaudeDesktop/      # Section 09
 │   └── 09_Running_Claude_Desktop.ipynb       # Browser-accessible desktop application
 └── 10_Hermes/             # Section 10
-    └── 10_Running_Hermes_Agent.ipynb         # Terminal agent in an approved developer session
+    └── 10a_Running_Hermes_Agent.ipynb        # Hermes Agent app on an LLM Gateway endpoint
 ```
 
 ## Updating from Older Recordings or Checkouts
