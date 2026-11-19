@@ -34,7 +34,7 @@ This is not a vLLM tutorial. Klique runs vLLM for you; Sections 01–04 turn a m
 | 07 | [`07_VSCode/`](07_VSCode/07a_Running_VS_Code.ipynb) | Remote IDE introduction, then five hands-on labs: governed playground, repository RAG, agent debugging, model evaluation, and resumable training |
 | 08 | [`08_ClaudeCode/`](08_ClaudeCode/08_Running_Claude_Code.ipynb) | Running Claude Code: use a managed coding agent, review changes, and inspect usage |
 | 09 | [`09_ClaudeDesktop/`](09_ClaudeDesktop/09_Running_Claude_Desktop.ipynb) | Running Claude Desktop: open the hosted desktop app, try a small task, and clean up |
-| 10 | [`10_Hermes/`](10_Hermes/10a_Running_Hermes_Agent.ipynb) | Running Hermes Agent: launch the Hermes app on an LLM Gateway endpoint, explore its terminal UI, and stop the session |
+| 10 | [`10_Hermes/`](10_Hermes/10a_Running_Hermes_Agent.ipynb) | Running Hermes Agent: launch the Hermes app on an LLM Gateway endpoint, explore its terminal UI, and stop the session; then [10B · Run a Governed Hermes Workflow](10_Hermes/10b_Run_a_Governed_Hermes_Workflow.ipynb), comparing pasted notes with local-file tools, evidence-cited briefs, telemetry and an optional isolated rate-limit checkpoint |
 
 ## The Path
 
@@ -170,7 +170,8 @@ KliqueNotebooks/
 ├── 09_ClaudeDesktop/      # Section 09
 │   └── 09_Running_Claude_Desktop.ipynb       # Browser-accessible desktop application
 └── 10_Hermes/             # Section 10
-    └── 10a_Running_Hermes_Agent.ipynb        # Hermes Agent app on an LLM Gateway endpoint
+    ├── 10a_Running_Hermes_Agent.ipynb        # Hermes Agent app on an LLM Gateway endpoint
+    └── 10b_Run_a_Governed_Hermes_Workflow.ipynb # Offline fixtures, brief comparison, optional live governance
 ```
 
 ## Updating from Older Recordings or Checkouts
