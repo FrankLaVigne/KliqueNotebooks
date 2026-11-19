@@ -30,8 +30,8 @@ This is not a vLLM tutorial. Klique runs vLLM for you; Sections 01–04 turn a m
 | 03 | `03_Governance/` | Read usage, price your vLLM Resource, set a request rate limit and a wallet budget, and write a client that handles each kind of rejection |
 | 04 | `04_Agents/` | Build a small tool-using agent whose every step is metered, rate-limited, and budgeted by the LLM Gateway |
 | 05 | [`05_Jupyter/`](05_Jupyter/README.md) | JupyterLab introduction plus 13 executable labs: MNIST/EMNIST, experiments, drawing, robustness, RAG, CPU/GPU timing, reports, bike demand, telemetry, Fashion-MNIST, and CSV/SQL. Intro deployment checks remain TODOs |
-| 06 | [`06_SSH/`](06_SSH/06_Running_an_SSH_Session.ipynb) | [SSH introduction](06_SSH/06_Running_an_SSH_Session.ipynb), then [manually install ComfyUI](06_SSH/06b_Install_ComfyUI_in_an_SSH_Session.ipynb) and generate images through its UI and API |
-| 07 | [`07_VSCode/`](07_VSCode/07_Running_VS_Code.ipynb) | Remote IDE introduction, then five hands-on labs: governed playground, repository RAG, agent debugging, model evaluation, and resumable training |
+| 06 | [`06_SSH/`](06_SSH/06a_Running_an_SSH_Session.ipynb) | [SSH introduction](06_SSH/06a_Running_an_SSH_Session.ipynb), then [manually install ComfyUI](06_SSH/06b_Install_ComfyUI_in_an_SSH_Session.ipynb) and generate images through its UI and API |
+| 07 | [`07_VSCode/`](07_VSCode/07a_Running_VS_Code.ipynb) | Remote IDE introduction, then five hands-on labs: governed playground, repository RAG, agent debugging, model evaluation, and resumable training |
 | 08 | [`08_ClaudeCode/`](08_ClaudeCode/08_Running_Claude_Code.ipynb) | Running Claude Code: use a managed coding agent, review changes, and inspect usage |
 | 09 | [`09_ClaudeDesktop/`](09_ClaudeDesktop/09_Running_Claude_Desktop.ipynb) | Running Claude Desktop: open the hosted desktop app, try a small task, and clean up |
 | 10 | [`10_Hermes/`](10_Hermes/10a_Running_Hermes_Agent.ipynb) | Running Hermes Agent: launch the Hermes app on an LLM Gateway endpoint, explore its terminal UI, and stop the session |
@@ -47,7 +47,7 @@ Model → vLLM Model Deployment → Model Endpoint → AI Application Gateway �
 
 Sections 03 and 04 build on the governed endpoint: 03 caps what it can cost, and 04 runs an agent through it.
 
-Sections 05–10 add developer sessions on managed compute. They can be taken independently of the endpoint labs; their introductory exercises do not require launching a model deployment. The sequence is [JupyterLab](05_Jupyter/05_Running_Jupyter_Lab.ipynb) → [SSH](06_SSH/06_Running_an_SSH_Session.ipynb) → [VS Code](07_VSCode/07_Running_VS_Code.ipynb) → [Claude Code](08_ClaudeCode/08_Running_Claude_Code.ipynb) → [Claude Desktop](09_ClaudeDesktop/09_Running_Claude_Desktop.ipynb). Section 10 launches [Hermes Agent](10_Hermes/10a_Running_Hermes_Agent.ipynb) from Klique Applications against an LLM Gateway endpoint. You may also choose the interface you need. Section 05 retains a first-lesson launch scaffold with explicit deployment/screenshot TODOs, then adds 13 runnable, offline-first data and ML lessons. Passing local checks does not establish live Klique launch or restoration.
+Sections 05–10 add developer sessions on managed compute. They can be taken independently of the endpoint labs; their introductory exercises do not require launching a model deployment. The sequence is [JupyterLab](05_Jupyter/05a_Running_Jupyter_Lab.ipynb) → [SSH](06_SSH/06a_Running_an_SSH_Session.ipynb) → [VS Code](07_VSCode/07a_Running_VS_Code.ipynb) → [Claude Code](08_ClaudeCode/08_Running_Claude_Code.ipynb) → [Claude Desktop](09_ClaudeDesktop/09_Running_Claude_Desktop.ipynb). Section 10 launches [Hermes Agent](10_Hermes/10a_Running_Hermes_Agent.ipynb) from Klique Applications against an LLM Gateway endpoint. You may also choose the interface you need. Section 05 retains a first-lesson launch scaffold with explicit deployment/screenshot TODOs, then adds 13 runnable, offline-first data and ML lessons. Passing local checks does not establish live Klique launch or restoration.
 
 ### Explore Data in JupyterLab
 
@@ -101,7 +101,7 @@ For Sections 05–10, follow each notebook's app-specific prerequisites. They re
    git clone https://github.com/FrankLaVigne/KliqueNotebooks.git
    ```
 
-2. Read [Orientation](00_Orientation/00_Orientation.ipynb), then choose a path. For endpoint labs, follow 01 → 02a → 02b → 03 → 04; 01b–01d are optional after 01, and 02c is currently a concept placeholder. For developer sessions, choose an introduction in 05–10, then follow the prerequisites of any project you select. You do not need to run every section first.
+2. Read [Orientation](00_Orientation/00_Orientation.ipynb), then choose a path. For endpoint labs, follow 01a → 02a → 02b → 03 → 04; 01b–01d are optional after 01a, and 02c is currently a concept placeholder. For developer sessions, choose an introduction in 05–10, then follow the prerequisites of any project you select. You do not need to run every section first.
 
 3. For the endpoint path, create a `.env` file in the project root in Section 1.6. The endpoint notebooks read it through `config.py`:
 
@@ -135,7 +135,7 @@ KliqueNotebooks/
 ├── .env                   # Endpoint, token, and optional API key (not tracked in git)
 ├── 00_Orientation/        # Section 00
 ├── 01_vLLM/               # Section 01
-│   ├── 01_Deploy_a_Model_with_vLLM.ipynb
+│   ├── 01a_Deploy_a_Model_with_vLLM.ipynb
 │   ├── 01b_Stream_and_Measure_Performance.ipynb    # Streaming, time to first token, concurrency
 │   ├── 01c_Structured_Output_and_Tool_Calling.ipynb # JSON schemas, enums, tool calls, reasoning
 │   └── 01d_Tune_and_Relaunch_a_Deployment.ipynb     # --max-model-len, --max-num-seqs, relaunch
@@ -148,18 +148,18 @@ KliqueNotebooks/
 ├── 04_Agents/             # Section 04
 │   └── 04_Agents_on_a_Governed_Endpoint.ipynb  # A tool-using agent under gateway governance
 ├── 05_Jupyter/            # Section 05
-│   ├── 05_Running_Jupyter_Lab.ipynb          # Intro scaffold; deployment validation TODOs
+│   ├── 05a_Running_Jupyter_Lab.ipynb         # Intro scaffold; deployment validation TODOs
 │   ├── 05b_Explore_MNIST.ipynb               # 05b–05n: 13 data and ML projects
 │   ├── README.md                           # Full lesson index, setup, validation
 │   └── DATASETS.md                         # Sources, licenses, download choices
 ├── 06_SSH/                # Section 06
-│   ├── 06_Running_an_SSH_Session.ipynb       # Remote shell and connection lifecycle
+│   ├── 06a_Running_an_SSH_Session.ipynb      # Remote shell and connection lifecycle
 │   ├── 06b_Install_ComfyUI_in_an_SSH_Session.ipynb # Manual install, SD1.5, SSH tunnel, UI and API
 │   ├── setup_comfyui_lab.py                  # 6B.4: download and verify the checkpoint, write the lab workflow
 │   ├── run_comfy_sample.py                   # 6B.9: submit the workflow through the API and save the image
 │   └── workflow_api.json                     # 6B.9: the lab workflow in API format
 ├── 07_VSCode/             # Section 07
-│   ├── 07_Running_VS_Code.ipynb              # Remote editor and session lifecycle
+│   ├── 07a_Running_VS_Code.ipynb             # Remote editor and session lifecycle
 │   ├── 07b_Build_a_Governed_AI_Playground.ipynb
 │   ├── 07c_Chat_with_This_Repository.ipynb
 │   ├── 07d_Debug_an_Agent.ipynb

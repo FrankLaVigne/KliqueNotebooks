@@ -1,6 +1,6 @@
 # JupyterLab projects: inspect, train, compare, explain
 
-Start with [05: Running Jupyter Lab](05_Running_Jupyter_Lab.ipynb), then choose a project below. The introduction retains its explicit deployment/screenshot and live stop/restore TODOs. The follow-on lessons contain executable Python cells and bounded offline-first examples. They do not require the endpoint labs, a GPU, or gateway credentials unless you explicitly choose an optional live feature.
+Start with [05: Running Jupyter Lab](05a_Running_Jupyter_Lab.ipynb), then choose a project below. The introduction retains its explicit deployment/screenshot and live stop/restore TODOs. The follow-on lessons contain executable Python cells and bounded offline-first examples. They do not require the endpoint labs, a GPU, or gateway credentials unless you explicitly choose an optional live feature.
 
 ## Pick a lesson
 
@@ -78,4 +78,4 @@ Real MNIST and Fashion-MNIST downloads passed published compressed-file checksum
 
 Key test versions: Python 3.12, NumPy 2.3.5, pandas 2.2.3, scikit-learn 1.8.0, matplotlib 3.10.8, Pillow 12.3.0, nbformat 5.11.1, and ipywidgets 8.1.9. The supported ranges are not a lockfile or a promise of identical scores across environments. No live teaching tenant, Jupyter kernel/frontend, launch/restore, GPU, ClearML server, or live gateway is claimed verified. The validation environment blocks both TCP and IPC kernel sockets; the Python-process mode tests the same ordered code cells without those sockets. Real EMNIST data, optional PyTorch training, and interactive widget rendering remain unverified; the EMNIST adapter tests use mocked data and are not proof of remote availability. Preserve the introduction's deployment TODOs until someone performs those checks in the actual teaching environment.
 
-**Back:** [Jupyter introduction](05_Running_Jupyter_Lab.ipynb) · **Next interface:** [SSH](../06_SSH/06_Running_an_SSH_Session.ipynb) · **Course:** [Orientation](../00_Orientation/00_Orientation.ipynb) · [Root README](../README.md)
+**Back:** [Jupyter introduction](05a_Running_Jupyter_Lab.ipynb) · **Next interface:** [SSH](../06_SSH/06a_Running_an_SSH_Session.ipynb) · **Course:** [Orientation](../00_Orientation/00_Orientation.ipynb) · [Root README](../README.md)

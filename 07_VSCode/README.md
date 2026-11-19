@@ -1,6 +1,6 @@
 # Hands-on VS Code labs
 
-Start with [07: Running VS Code](07_Running_VS_Code.ipynb), then choose:
+Start with [07: Running VS Code](07a_Running_VS_Code.ipynb), then choose:
 
 | Notebook | Companion code | Offline validation |
 |---|---|---|

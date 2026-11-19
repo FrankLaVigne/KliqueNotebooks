@@ -16,9 +16,9 @@ class RagTests(unittest.TestCase):
             with self.subTest(path=relative):
                 self.assertTrue((root / relative).is_file())
         chunks = load_chunks(root)
-        self.assertTrue(any(c.source.startswith('07_VSCode/07_Running_VS_Code.ipynb') for c in chunks))
+        self.assertTrue(any(c.source.startswith('07_VSCode/07a_Running_VS_Code.ipynb') for c in chunks))
         hits = Retriever(chunks).search('How do I restore my VS Code workspace?')
-        self.assertTrue(any(c.source.startswith('07_VSCode/07_Running_VS_Code.ipynb') for c, _ in hits))
+        self.assertTrue(any(c.source.startswith('07_VSCode/07a_Running_VS_Code.ipynb') for c, _ in hits))
 
     def test_allowlist_excludes_code_outputs_unknown_files_and_fences(self):
         with tempfile.TemporaryDirectory() as tmp:
