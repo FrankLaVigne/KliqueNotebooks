@@ -11,7 +11,7 @@ from pathlib import Path
 ALLOWLIST = (
     'README.md',
     '02_LLMGateway/02a_Use_the_LLM_Gateway.ipynb',
-    '02_LLMGateway/02b_Models_and_Routed_Resources.ipynb',
+    '02_LLMGateway/02c_Models_and_Routed_Resources.ipynb',
     '07_VSCode/07a_Running_VS_Code.ipynb',
 )
 ABSTAIN = 'I cannot answer that from the retrieved repository documentation.'

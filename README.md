@@ -26,7 +26,7 @@ This is not a vLLM tutorial. Klique runs vLLM for you; Sections 01–04 turn a m
 |---------|-----------|-------|
 | 00 | [Orientation](00_Orientation/00_Orientation.ipynb) | Two learning paths, scope, mental model, prerequisites, and setup. Read this first. |
 | 01 | `01_vLLM/` | Deploy a model with vLLM on Klique, generate a gateway token, and test the endpoint. Optional follow-ons: [01b](01_vLLM/01b_Stream_and_Measure_Performance.ipynb) streaming, latency, and concurrency; [01c](01_vLLM/01c_Structured_Output_and_Tool_Calling.ipynb) JSON-schema output and tool calling; [01d](01_vLLM/01d_Tune_and_Relaunch_a_Deployment.ipynb) tuning vLLM arguments and relaunching |
-| 02 | `02_LLMGateway/` | Call the endpoint through the LLM Gateway under a profile, then call different models and Routed Resources. 02c introduces semantic routing; its hands-on lab is planned |
+| 02 | `02_LLMGateway/` | Call an existing gateway, try [02b Simple Setup](02_LLMGateway/02b_Configure_LLM_Gateway_with_Simple_Setup.ipynb), then explore [02c Models and Routed Resources](02_LLMGateway/02c_Models_and_Routed_Resources.ipynb). 02d introduces semantic routing; its hands-on lab is planned |
 | 03 | `03_Governance/` | Read usage, price your vLLM Resource, set a request rate limit and a wallet budget, and write a client that handles each kind of rejection |
 | 04 | `04_Agents/` | Build a small tool-using agent whose every step is metered, rate-limited, and budgeted by the LLM Gateway |
 | 05 | [`05_Jupyter/`](05_Jupyter/README.md) | JupyterLab introduction plus 13 executable labs: MNIST/EMNIST, experiments, drawing, robustness, RAG, CPU/GPU timing, reports, bike demand, telemetry, Fashion-MNIST, and CSV/SQL. Intro deployment checks remain TODOs |
@@ -101,7 +101,7 @@ For Sections 05–10, follow each notebook's app-specific prerequisites. They re
    git clone https://github.com/FrankLaVigne/KliqueNotebooks.git
    ```
 
-2. Read [Orientation](00_Orientation/00_Orientation.ipynb), then choose a path. For endpoint labs, follow 01a → 02a → 02b → 03 → 04; 01b–01d are optional after 01a, and 02c is currently a concept placeholder. For developer sessions, choose an introduction in 05–10, then follow the prerequisites of any project you select. You do not need to run every section first.
+2. Read [Orientation](00_Orientation/00_Orientation.ipynb), then choose a path. For endpoint labs, follow 01a → 02a → 02b → 02c → 03 → 04; 01b–01d are optional after 01a, 02b can be skipped if you cannot configure the gateway, and 02d is currently a concept placeholder. For developer sessions, choose an introduction in 05–10, then follow the prerequisites of any project you select. You do not need to run every section first.
 
 3. For the endpoint path, create a `.env` file in the project root in Section 1.6. The endpoint notebooks read it through `config.py`:
 
@@ -111,9 +111,9 @@ For Sections 05–10, follow each notebook's app-specific prerequisites. They re
    KLIQUE_GATEWAY_TOKEN=<your AI Application Gateway token>
    ```
 
-   Sections 02–04 reuse that gateway token. `config.py` derives the LLM Gateway URL as `<same-host>/llm`, and the profile and gateway alias names are set in the notebooks.
+   Sections 02–04 reuse that gateway token. For the existing endpoint labs, `config.py` derives the LLM Gateway URL as `<same-host>/llm`. For Simple Setup (02b), copy the generated profile's endpoint and alias from Your AI Endpoints.
 
-   Optional: in Section 2.10, `02b` can read your profile's model list from the Klique API server. To enable it, add an access key and secret, created in the WebApp under **Settings > Workspace**, along with the API server's address:
+   Optional: in Section 2.10, `02c` can read your profile's model list from the Klique API server. To enable it, add an access key and secret, created in the WebApp under **Settings > Workspace**, along with the API server's address:
 
    ```
    KLIQUE_API_SERVER=https://<your api server>
@@ -141,8 +141,9 @@ KliqueNotebooks/
 │   └── 01d_Tune_and_Relaunch_a_Deployment.ipynb     # --max-model-len, --max-num-seqs, relaunch
 ├── 02_LLMGateway/         # Section 02
 │   ├── 02a_Use_the_LLM_Gateway.ipynb
-│   ├── 02b_Models_and_Routed_Resources.ipynb   # Several models, one gateway; rule-based routing
-│   └── 02c_Semantic_Routing.ipynb              # Concept introduction; hands-on lab planned
+│   ├── 02b_Configure_LLM_Gateway_with_Simple_Setup.ipynb   # Create a profile from a preset and make one verified call
+│   ├── 02c_Models_and_Routed_Resources.ipynb   # Several models, one gateway; rule-based routing
+│   └── 02d_Semantic_Routing.ipynb              # Concept introduction; hands-on lab planned
 ├── 03_Governance/         # Section 03
 │   └── 03_Govern_Usage_Cost_and_Limits.ipynb   # Usage, pricing, rate limits, wallet budgets
 ├── 04_Agents/             # Section 04
